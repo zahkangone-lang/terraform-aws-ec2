@@ -1,0 +1,50 @@
+# ============================
+# Terraform
+# ============================
+
+# Répertoire local contenant les providers téléchargés (ne jamais versionner)
+.terraform/
+
+# Fichiers de state Terraform : contiennent potentiellement des données
+# sensibles (IP, IDs, parfois des secrets en clair) et sont volumineux/binaires.
+# Avec un backend distant (S3+DynamoDB ou HCP Terraform), ils ne doivent
+# jamais être stockés dans Git.
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+
+.terraform.lock.hcl
+terraform.tfvars
+
+# Fichiers de crash Terraform
+crash.log
+crash.*.log
+
+# Fichiers d'override locaux (utilisés pour des tests, ne doivent pas être commit)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Fichier de config CLI Terraform (peut contenir des credentials/API tokens HCP Terraform)
+.terraformrc
+terraform.rc
+
+# ============================
+# Variables sensibles
+# ============================
+# Le fichier terraform.tfvars de ce dépôt ne contient QUE des valeurs de
+# configuration non sensibles (region, tailles d'instances, CIDR...).
+# Si vous ajoutez des secrets (mots de passe, tokens, clés API), déplacez-les
+# dans un fichier local non versionné, par exemple :
+*.auto.tfvars
+secrets.tfvars
+*.tfvars.json
+
+# ============================
+# Divers / IDE / OS
+# ============================
+.DS_Store
+.idea/
+.vscode/
+*.log
